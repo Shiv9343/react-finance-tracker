@@ -1,0 +1,302 @@
+/* --- Neumorphic UI Overhaul --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --background-light: #E0E5EC;
+  --primary-text: #3f4a5a;
+  --secondary-text: #8d97a9;
+  --accent-gradient: linear-gradient(135deg, #a450e0 0%, #fa5a7e 100%);
+  --accent-green: #2ecc71;
+  --accent-red: #e74c3c;
+  
+  /* The core of Neumorphism: two shadows */
+  --neumorphic-shadow-light: -5px -5px 10px #ffffff;
+  --neumorphic-shadow-dark: 5px 5px 10px #bec3c9;
+  
+  --neumorphic-shadow: var(--neumorphic-shadow-light), var(--neumorphic-shadow-dark);
+  --neumorphic-shadow-inset: inset var(--neumorphic-shadow-light), inset var(--neumorphic-shadow-dark);
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-light);
+  color: var(--primary-text);
+}
+
+.App {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- General Components --- */
+.card {
+  background-color: var(--background-light);
+  border: none;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: var(--neumorphic-shadow);
+  transition: all 0.3s ease-in-out;
+}
+
+input, select {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 15px;
+  border: none;
+  background-color: var(--background-light);
+  color: var(--primary-text);
+  border-radius: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  box-shadow: var(--neumorphic-shadow-inset);
+}
+
+input::placeholder {
+  color: var(--secondary-text);
+}
+
+/* --- Header --- */
+.app-header {
+  margin-bottom: 30px;
+}
+.greeting {
+  font-size: 28px;
+  font-weight: 700;
+}
+.current-date {
+  font-size: 16px;
+  color: var(--secondary-text);
+}
+.logout-btn {
+  background: var(--background-light);
+  box-shadow: var(--neumorphic-shadow);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.logout-btn:active {
+  box-shadow: var(--neumorphic-shadow-inset);
+}
+
+/* --- Summary Cards & Balance --- */
+.summary-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.summary-card {
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+}
+.summary-card.income { background: var(--accent-gradient); }
+.summary-card.expense { background: linear-gradient(135deg, #e74c3c, #f39c12); }
+
+.card-amount { font-size: 24px; font-weight: 600; }
+.balance-overview { text-align: center; }
+.balance-amount { font-size: 44px; font-weight: 700; }
+
+/* --- Forms & Buttons --- */
+.transaction-form h3, .budget-section h3 {
+  margin-top: 0;
+  text-align: center;
+  font-weight: 600;
+  color: var(--primary-text);
+}
+.type-btn {
+  border: none;
+  background-color: transparent;
+  color: var(--secondary-text);
+  font-weight: 500;
+}
+.type-btn.active {
+  color: var(--primary-text);
+  box-shadow: var(--neumorphic-shadow-inset);
+}
+.transaction-form button[type="submit"], .budget-form button {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: var(--accent-gradient);
+  color: white;
+  box-shadow: var(--neumorphic-shadow);
+  transition: all 0.2s ease-in-out;
+}
+.transaction-form button[type="submit"]:active, .budget-form button:active {
+  box-shadow: var(--neumorphic-shadow-inset);
+}
+
+/* --- Lists (Transactions, Debts) --- */
+.recent-transactions {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+.transaction-item {
+  background-color: var(--background-light);
+  box-shadow: var(--neumorphic-shadow);
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.transaction-item:last-child { border-bottom: none; }
+.transaction-description { font-weight: 600; }
+
+/* --- All Pages & Links --- */
+.page-header h1 { font-weight: 700; }
+.back-link { font-weight: 500; color: var(--primary-text); }
+.view-all-btn {
+  background-color: var(--background-light);
+  box-shadow: var(--neumorphic-shadow);
+  font-weight: 600;
+  color: var(--primary-text);
+}
+.view-all-btn:active {
+  box-shadow: var(--neumorphic-shadow-inset);
+}
+
+/* --- Charts --- */
+.activity-chart, .debt-chart { /* Assuming debt chart exists */
+  padding: 25px;
+}
+
+/* --- Login Page --- */
+.login-form {
+  background: var(--background-light);
+  box-shadow: var(--neumorphic-shadow);
+}
+.login-form button {
+  background: var(--accent-gradient);
+  box-shadow: var(--neumorphic-shadow);
+}
+.login-form input {
+  box-shadow: var(--neumorphic-shadow-inset);
+}
+/* --- Floating Action Button (FAB) --- */
+.fab {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  color: white;
+  font-size: 36px;
+  line-height: 58px;
+  text-align: center;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s ease-in-out;
+}
+.fab:hover {
+  transform: scale(1.1);
+}
+
+/* --- Modal Styles --- */
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Modal {
+  background: var(--background-light);
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: var(--neumorphic-shadow);
+  position: relative;
+  outline: none;
+}
+
+.modal-header {
+  display: flex;
+  border-bottom: 1px solid #d1d9e6;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.modal-tab {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  color: var(--secondary-text);
+  font-weight: 500;
+  border-radius: 10px;
+}
+.modal-tab.active {
+  color: var(--primary-text);
+  box-shadow: var(--neumorphic-shadow-inset);
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: var(--secondary-text);
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+/* --- Clickable Name Style --- */
+.header-left {
+  cursor: pointer;
+}
+/* --- Icon Styles --- */
+.summary-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.card-icon {
+  font-size: 24px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  font-weight: 600;
+  color: var(--primary-text);
+}
+
+.card-title svg { /* This targets the icon inside the h3 tag */
+  font-size: 20px;
+  color: var(--secondary-text);
+}
